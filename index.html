@@ -50,9 +50,6 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Helvetic
 .card b,.card span{z-index:2}
 .card b{animation:bt 1.6s ease-in-out infinite}
 @keyframes bt{50%{transform:scale(1.06)}}
-.fx{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
-.fx i{position:absolute;bottom:-30px;font-style:normal;animation:fl linear infinite;opacity:0}
-@keyframes fl{0%{transform:translateY(0) rotate(0);opacity:0}10%{opacity:.9}100%{transform:translateY(-110vh) rotate(40deg);opacity:0}}
 </style>
 </head>
 <body>
@@ -70,10 +67,5 @@ body{background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Helvetic
   </main>
   <footer class="foot">18+ uniquement</footer>
 </div>
-<div class="fx" id="fx"></div>
-<script>
-const fx=document.getElementById('fx'),e=['💖','✨','💋','🌶️','💕'];
-for(let k=0;k<16;k++){const i=document.createElement('i');i.textContent=e[k%e.length];i.style.left=Math.random()*100+'%';i.style.fontSize=(14+Math.random()*16)+'px';i.style.animationDuration=(7+Math.random()*7)+'s';i.style.animationDelay=(Math.random()*10)+'s';fx.appendChild(i)}
-</script>
 </body>
 </html>
