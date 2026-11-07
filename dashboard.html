@@ -1,19 +1,17 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="light">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=1440">
 <title>Creator Reports</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root{--nav:#2e3a52;--nav2:#263147;--blue:#2453f0;--bg:#fff;--page:#f1f2f4;--line:#e6e8ec;--txt:#1b1f2a;--mut:#6b7280;--green:#16b88a;--red:#ef4444;--th:#f7f8fa}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161a22;--page:#0f1218;--line:#2a303c;--txt:#e6e9ef;--mut:#9aa3b2;--th:#1d222c;--nav:#1f2738;--nav2:#2a3448}}
-:root[data-theme="dark"]{--bg:#161a22;--page:#0f1218;--line:#2a303c;--txt:#e6e9ef;--mut:#9aa3b2;--th:#1d222c;--nav:#1f2738;--nav2:#2a3448}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Inter,system-ui,sans-serif;background:var(--page);color:var(--txt);font-size:12px}
 .app{display:grid;grid-template-columns:200px 1fr;grid-template-rows:44px 1fr;min-height:100vh;background:var(--nav)}
-.top{grid-column:1/3;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 18px;color:#c9d0dc;font-size:11px}
+.top{grid-column:1/3;display:flex;align-items:center;align-items:center;justify-content:flex-end;gap:14px;padding:0 18px;color:#c9d0dc;font-size:11px}
 .top .pill{background:#13a37a;color:#fff;border-radius:6px;padding:4px 8px;font-weight:600}
 .top .sfw{background:#fff;color:var(--nav);border-radius:5px;padding:3px 6px;font-weight:700;font-size:10px}
 .top .me{color:#fff;font-weight:600;display:flex;align-items:center;gap:6px}
@@ -25,7 +23,7 @@ aside a:hover{background:var(--nav2)}
 aside a .chev{margin-left:auto;opacity:.7;font-size:10px}
 aside .sub{padding-left:26px}
 aside .on{background:var(--blue);color:#fff}
-aside .ico{width:14px;text-align:center;opacity:.9}
+aside .ico{width:14px;display:flex;text-align:center;opacity:.9}
 aside .help{margin-top:auto;align-self:center;font-size:11px;padding:20px 0 10px}
 main{background:var(--bg);border-top-left-radius:10px;overflow:hidden;min-width:0}
 .head{padding:12px 16px;font-weight:600;font-size:13px;border-bottom:1px solid var(--line)}
@@ -68,62 +66,60 @@ th:after{content:"⇅";float:right;opacity:.5}
 td{padding:11px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
 .up{color:var(--green);font-size:9px;margin-left:6px}.dn{color:var(--red);font-size:9px;margin-left:6px}
 .chat{position:fixed;right:22px;bottom:22px;width:34px;height:34px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center}
-@media(max-width:900px){.app{grid-template-columns:1fr}aside{display:none}.top{justify-content:flex-start;padding-left:120px;overflow:hidden}.sum,.cards{grid-template-columns:1fr 1fr}.chan{grid-template-columns:1fr}.sum>div{border:0}}
-@media(max-width:520px){.sum,.cards{grid-template-columns:1fr}.top>*:not(.me){display:none}}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="logo"><span class="mark">S</span>STUDIO</div>
   <div class="top">
-    <span>Version 1.0.0</span><span>UTC-06:00 ⓘ</span><span class="pill">● Referrals</span><span class="sfw">SFW</span><span>🔔</span><span>⚙</span>
+    <span>Version 1.0.0</span><span>UTC-06:00 ⓘ</span><span class="pill">● Referrals</span><span class="sfw">SFW</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21h4"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.6 15H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.7 4.6V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
     <span class="me"><span class="mark" style="width:18px;height:18px;font-size:10px">S</span>Studio ▾</span>
   </div>
   <aside>
-    <a href="#"><span class="ico">⌂</span>Home Page</a>
-    <a href="#"><span class="ico">◐</span>OF Manager<span class="chev">⌄</span></a>
-    <a href="#"><span class="ico">▮</span><b>Analytics</b><span class="chev">⌃</span></a>
+    <a href="#"><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v11H3z"/></svg></span>Home Page</a>
+    <a href="#"><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>OF Manager<span class="chev">⌄</span></a>
+    <a href="#"><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></span><b>Analytics</b><span class="chev">⌃</span></a>
     <a href="#" class="sub on">Creator Reports</a>
     <a href="#" class="sub">Employee Reports</a>
     <a href="#" class="sub">Fan Reports</a>
     <a href="#" class="sub">Message Dashboard</a>
-    <a href="#"><span class="ico">▤</span>Growth<span class="chev">⌄</span></a>
-    <a href="#"><span class="ico">⤴</span>Share for Share<span class="chev">⌄</span></a>
-    <a href="#"><span class="ico">◉</span>Creators<span class="chev">⌄</span></a>
-    <a href="#"><span class="ico">👥</span>Employees<span class="chev">⌄</span></a>
-    <span class="help">ⓘ Help Center</span>
+    <a href="#"><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 14l3-3 3 3 4-4"/></svg></span>Growth<span class="chev">⌄</span></a>
+    <a href="#"><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg></span>Share for Share<span class="chev">⌄</span></a>
+    <a href="#"><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="10" r="3"/><path d="M6.2 18.8a7 7 0 0 1 11.6 0"/></svg></span>Creators<span class="chev">⌄</span></a>
+    <a href="#"><span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>Employees<span class="chev">⌄</span></a>
+    <span class="help"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg> Help Center</span>
   </aside>
   <main>
     <div class="head">Creator Reports</div>
     <div class="bar">
       <span class="tab on">Overview</span><span class="tab">Creator performance</span>
-      <div class="ctrl"><span>Jan. 11, 2025 &nbsp;→&nbsp; Feb. 09, 2025 &nbsp;📅</span><select><option>Shown by day</option><option>Shown by week</option></select><select><option>Net earnings</option><option>Gross earnings</option></select><span class="flt">⏷ Filters</span></div>
+      <div class="ctrl"><span>Jan. 11, 2025 &nbsp;→&nbsp; Feb. 09, 2025 &nbsp;<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><select><option>Shown by day</option><option>Shown by week</option></select><select><option>Net earnings</option><option>Gross earnings</option></select><span class="flt"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2453f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></svg> Filters</span></div>
     </div>
     <div class="wrap">
       <h3>Earnings summary <i>i</i></h3>
       <div class="sum">
-        <div class="tot"><div class="badge">✦</div><small>Total earnings</small><b id="tot"></b></div>
+        <div class="tot"><div class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><small>Total earnings</small><b id="tot"></b></div>
         <div id="c1"></div><div id="c2"></div><div id="c3"></div>
       </div>
       <h3>Earnings trends <i>i</i></h3>
       <div class="chart" style="height:210px"><canvas id="bars"></canvas></div>
       <h3 style="margin-top:28px">Earnings by channel <i>i</i></h3>
       <div class="chan"><div class="chart" style="height:190px"><canvas id="lines"></canvas></div><div class="leg" id="leg"></div></div>
-      <div class="sh"><h3>Creator statistics</h3><div class="act"><span>⚙ Custom metrics</span><span class="exp">⇪ Export</span></div></div>
+      <div class="sh"><h3>Creator statistics</h3><div class="act"><span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Custom metrics</span><span class="exp"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2453f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg> Export</span></div></div>
       <div class="cards">
-        <div class="card"><b>208</b><span>Creators</span><i>ⓘ</i></div>
-        <div class="card"><b>$2,888,026.84</b><span>Message earnings</span><i>ⓘ</i></div>
-        <div class="card"><b>$3,957,660.63</b><span>Total earnings</span><i>ⓘ</i></div>
-        <div class="card"><b>$28,626.50</b><span>Refunded</span><i>ⓘ</i></div>
+        <div class="card"><b>208</b><span>Creators</span><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg></i></div>
+        <div class="card"><b>$2,888,026.84</b><span>Message earnings</span><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg></i></div>
+        <div class="card"><b>$3,957,660.63</b><span>Total earnings</span><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg></i></div>
+        <div class="card"><b>$28,626.50</b><span>Refunded</span><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg></i></div>
       </div>
       <div class="tw"><table><thead><tr><th>Creator</th><th>Subscription</th><th>Tips</th><th>Message</th><th>Total earnings</th><th>Total active fans</th><th>Expired</th></tr></thead><tbody id="tb"></tbody></table></div>
     </div>
   </main>
 </div>
-<div class="chat">💬</div>
+<div class="chat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></div>
 <script>
 const $=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-const ch=[['Subscriptions',593288.47,'#2453f0','🔖','#e3f6ef','#16b88a'],['Tips',459160.31,'#16b88a','💡','#e8edfd','#2453f0'],['Posts',12149.95,'#ef4444','📄','#e3f6ef','#16b88a'],['Messages',2883428.17,'#f59e3b','💬','#f6e8fb','#b04ad6'],['Referrals',604.78,'#14b8c9','👤','#fdeaea','#ef4444'],['Streams',976,'#c026d3','☰','#e8edfd','#2453f0']];
+const ch=[['Subscriptions',593288.47,'#2453f0','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>','#e3f6ef','#16b88a'],['Tips',459160.31,'#16b88a','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>','#e8edfd','#2453f0'],['Posts',12149.95,'#ef4444','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>','#e3f6ef','#16b88a'],['Messages',2883428.17,'#f59e3b','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>','#f6e8fb','#b04ad6'],['Referrals',604.78,'#14b8c9','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>','#fdeaea','#ef4444'],['Streams',976,'#c026d3','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg>','#e8edfd','#2453f0']];
 document.getElementById('tot').innerHTML='<span style="font-size:15px">$</span>'+$(ch.reduce((a,c)=>a+c[1],0)).slice(1);
 const kv=c=>`<div class="kv"><div><b>${$(c[1])}</b><span>${c[0]}</span></div><div class="ic" style="background:${c[4]};color:${c[5]}">${c[3]}</div></div>`;
 [[0,1],[2,4],[3,5]].forEach((p,i)=>document.getElementById('c'+(i+1)).innerHTML=kv(ch[p[0]])+kv(ch[p[1]]));
