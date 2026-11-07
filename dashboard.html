@@ -7,17 +7,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-:root{--nav:#2e3a52;--nav2:#263147;--blue:#2453f0;--bg:#fff;--page:#f1f2f4;--line:#e6e8ec;--txt:#1b1f2a;--mut:#6b7280;--green:#16b88a;--red:#ef4444;--th:#f7f8fa}
+:root{--nav:#0b0b0c;--nav2:#1c1c1f;--blue:#3a6cf4;--bg:#141416;--page:#0b0b0c;--line:#2a2a2e;--txt:#eceef2;--mut:#8b8f98;--green:#22c493;--red:#f05454;--th:#1b1b1e;--card:#18181b}
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:Inter,system-ui,sans-serif;background:var(--page);color:var(--txt);font-size:12px}
 .app{display:grid;grid-template-columns:200px 1fr;grid-template-rows:44px 1fr;min-height:100vh;background:var(--nav)}
-.top{grid-column:1/3;display:flex;align-items:center;align-items:center;justify-content:flex-end;gap:14px;padding:0 18px;color:#c9d0dc;font-size:11px}
-.top .pill{background:#13a37a;color:#fff;border-radius:6px;padding:4px 8px;font-weight:600}
-.top .sfw{background:#fff;color:var(--nav);border-radius:5px;padding:3px 6px;font-weight:700;font-size:10px}
+.top{grid-column:1/3;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 18px;color:#c9ccd3;font-size:11px}
+.top .pill{background:#1c1c1f;color:#fff;border-radius:6px;padding:5px 9px;font-weight:600}
+.top .pill:before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px}
+.top .sfw{background:#f26b3a;color:#fff;border-radius:5px;padding:3px 6px;font-weight:700;font-size:10px}
 .top .me{color:#fff;font-weight:600;display:flex;align-items:center;gap:6px}
 .logo{position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:8px;color:#fff;font-weight:700;letter-spacing:.5px}
-.mark{width:22px;height:22px;border-radius:5px;background:#fff;color:var(--nav);display:grid;place-items:center;font-weight:800;font-size:12px}
-aside{padding:6px 8px;color:#dfe4ec;display:flex;flex-direction:column}
+.mark{width:22px;height:22px;border-radius:5px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;font-size:12px}
+aside{padding:6px 8px;color:#d6d9df;display:flex;flex-direction:column}
 aside a{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:6px;color:inherit;text-decoration:none;font-size:12px}
 aside a:hover{background:var(--nav2)}
 aside a .chev{margin-left:auto;opacity:.7;font-size:10px}
@@ -27,52 +28,59 @@ aside .ico{width:14px;display:flex;text-align:center;opacity:.9}
 aside .help{margin-top:auto;align-self:center;font-size:11px;padding:20px 0 10px}
 main{background:var(--bg);border-top-left-radius:10px;overflow:hidden;min-width:0}
 .head{padding:12px 16px;font-weight:600;font-size:13px;border-bottom:1px solid var(--line)}
+.head span{color:var(--mut);font-weight:400;margin-left:10px}
 .bar{display:flex;align-items:center;gap:20px;padding:0 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
 .tab{padding:12px 0 10px;font-size:11.5px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent}
 .tab.on{color:var(--blue);border-color:var(--blue)}
-.ctrl{margin-left:auto;display:flex;gap:8px;padding:6px 0;flex-wrap:wrap}
+.ctrl{margin-left:auto;display:flex;gap:8px;padding:6px 0;flex-wrap:wrap;align-items:center}
 .ctrl>*{border:1px solid var(--line);border-radius:6px;padding:5px 9px;font-size:10.5px;background:var(--bg);color:var(--txt);font-family:inherit}
+.ctrl .dates{display:flex;align-items:center;gap:8px}
+.ctrl input[type=date]{background:none;border:0;color:var(--txt);font:inherit;color-scheme:dark}
 .ctrl .flt{color:var(--blue);border-color:var(--blue)}
 .wrap{padding:6px 16px 30px}
 h3{font-size:12.5px;font-weight:600;margin:16px 0 10px;display:flex;align-items:center;gap:6px}
-h3 i{font-style:normal;color:#aab;font-size:11px;border:1px solid #ccd;border-radius:50%;width:12px;height:12px;display:grid;place-items:center;font-size:8px}
+h3 i{font-style:normal;color:#777;border:1px solid #555;border-radius:50%;width:12px;height:12px;display:grid;place-items:center;font-size:8px}
 .sum{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr}
 .sum>div{padding:4px 16px;border-left:1px solid var(--line)}
 .sum>div:first-child{border:0;padding-left:16px}
-.tot .badge{width:28px;height:28px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff;font-weight:700;margin:8px 0 18px}
+.tot .badge{width:30px;height:30px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;margin:8px 0 18px}
 .tot small{color:var(--blue);font-size:10px}
-.tot b{display:block;color:var(--blue);font-size:22px;font-weight:700;margin-top:4px}
+.tot b{display:block;color:var(--blue);font-size:24px;font-weight:700;margin-top:4px}
 .kv{display:flex;justify-content:space-between;align-items:center;padding:8px 0 12px}
 .kv b{font-size:14px;display:block}.kv span{color:var(--mut);font-size:10px}
-.ic{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:13px}
+.ic{width:30px;height:30px;border-radius:50%;display:grid;place-items:center}
+.ed{cursor:text;border-radius:4px;outline:none}
+.ed:hover{box-shadow:0 0 0 1px #ffffff22}
+.ed.editing{box-shadow:0 0 0 1px var(--blue);background:#ffffff08}
 .chart{position:relative;height:200px}
-.chan{display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:start}
+.chan{display:grid;grid-template-columns:1fr 230px;gap:24px;align-items:start}
 .leg{font-size:10.5px;padding-top:4px}
-.leg div{display:grid;grid-template-columns:12px 1fr 50px 70px;padding:9px 0;align-items:center;gap:4px}
+.leg div{display:grid;grid-template-columns:12px 1fr 50px 80px;padding:9px 0;align-items:center;gap:4px}
 .leg div span:nth-child(n+3){text-align:right}
 .dot{width:6px;height:6px;border-radius:50%}
 .sh{display:flex;align-items:center}
 .sh .act{margin-left:auto;display:flex;gap:8px;font-size:10.5px}
-.sh .act span{padding:4px 8px;border-radius:6px}
+.sh .act span{padding:4px 8px;border-radius:6px;display:flex;align-items:center;gap:4px}
 .sh .act .exp{border:1px solid var(--blue);color:var(--blue)}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.card{border:1px solid var(--line);border-radius:8px;padding:16px 16px 18px;position:relative;box-shadow:0 1px 2px #0000000a}
+.card{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:16px 16px 18px;position:relative}
 .card b{font-size:18px;display:block}.card span{color:var(--mut);font-size:10px}
-.card i{position:absolute;right:14px;bottom:18px;font-style:normal;color:#aab;font-size:10px}
+.card i{position:absolute;right:14px;bottom:18px;font-style:normal}
 .tw{overflow-x:auto;margin-top:12px}
 table{width:100%;border-collapse:collapse;font-size:11px;min-width:820px}
 th{background:var(--th);color:var(--mut);font-weight:500;text-align:left;padding:10px;border-right:1px solid var(--line);font-size:10.5px;white-space:nowrap}
 th:after{content:"⇅";float:right;opacity:.5}
 td{padding:11px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
 .up{color:var(--green);font-size:9px;margin-left:6px}.dn{color:var(--red);font-size:9px;margin-left:6px}
-.chat{position:fixed;right:22px;bottom:22px;width:34px;height:34px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center}
+.chat{position:fixed;right:22px;bottom:22px;width:34px;height:34px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center}
+.hint{color:var(--mut);font-size:10px;font-weight:400;margin-left:8px}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="logo"><span class="mark">S</span>STUDIO</div>
   <div class="top">
-    <span>Version 1.0.0</span><span>UTC-06:00 ⓘ</span><span class="pill">● Referrals</span><span class="sfw">SFW</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21h4"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.6 15H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.7 4.6V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+    <span>UTC+01:00</span><span class="pill">Operational</span><span>Referrals</span><span>Leaderboard</span><span class="sfw">SFW</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21h4"/></svg><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-2.7-1.1l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1A1.6 1.6 0 0 0 3.6 15H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.1-2.7l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1A1.6 1.6 0 0 0 9.7 4.6V4a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 2.7 1.1l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0 1.1 2.7H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
     <span class="me"><span class="mark" style="width:18px;height:18px;font-size:10px">S</span>Studio ▾</span>
   </div>
   <aside>
@@ -90,15 +98,15 @@ td{padding:11px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
     <span class="help"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg> Help Center</span>
   </aside>
   <main>
-    <div class="head">Creator Reports</div>
+    <div class="head">Creator Reports<span>UTC+01:00</span></div>
     <div class="bar">
       <span class="tab on">Overview</span><span class="tab">Creator performance</span>
-      <div class="ctrl"><span>Jan. 11, 2025 &nbsp;→&nbsp; Feb. 09, 2025 &nbsp;<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><select><option>Shown by day</option><option>Shown by week</option></select><select><option>Net earnings</option><option>Gross earnings</option></select><span class="flt"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2453f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></svg> Filters</span></div>
+      <div class="ctrl"><span class="dates"><input type="date" id="d1"> → <input type="date" id="d2"> <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9aa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><select id="gran"><option value="day">Shown by day</option><option value="week">Shown by week</option></select><select id="mode"><option value="net">Net earnings</option><option value="gross">Gross earnings</option></select><span class="flt"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2453f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 3H2l8 9.5V19l4 2v-8.5z"/></svg> Filters</span></div>
     </div>
     <div class="wrap">
-      <h3>Earnings summary <i>i</i></h3>
+      <h3>Earnings summary <i>i</i><span class="hint">Double-clic sur un montant pour le modifier</span></h3>
       <div class="sum">
-        <div class="tot"><div class="badge"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><small>Total earnings</small><b id="tot"></b></div>
+        <div class="tot"><div class="badge">S</div><div style="display:none"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><small>Total earnings</small><b id="tot" class="ed" data-k="total"></b></div>
         <div id="c1"></div><div id="c2"></div><div id="c3"></div>
       </div>
       <h3>Earnings trends <i>i</i></h3>
@@ -107,36 +115,76 @@ td{padding:11px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
       <div class="chan"><div class="chart" style="height:190px"><canvas id="lines"></canvas></div><div class="leg" id="leg"></div></div>
       <div class="sh"><h3>Creator statistics</h3><div class="act"><span><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg> Custom metrics</span><span class="exp"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2453f0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg> Export</span></div></div>
       <div class="cards">
-        <div class="card"><b>208</b><span>Creators</span><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg></i></div>
-        <div class="card"><b>$2,888,026.84</b><span>Message earnings</span><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg></i></div>
-        <div class="card"><b>$3,957,660.63</b><span>Total earnings</span><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg></i></div>
-        <div class="card"><b>$28,626.50</b><span>Refunded</span><i><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#aab" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h0"/></svg></i></div>
-      </div>
+        <div class="card"><b id="s0" class="ed" data-k="creators"></b><span>Creators</span><i>ⓘ</i></div><div class="card"><b id="s1"></b><span>Message earnings</span><i>ⓘ</i></div><div class="card"><b id="s2"></b><span>Total earnings</span><i>ⓘ</i></div><div class="card"><b id="s3"></b><span>Refunded</span><i>ⓘ</i></div></div>
       <div class="tw"><table><thead><tr><th>Creator</th><th>Subscription</th><th>Tips</th><th>Message</th><th>Total earnings</th><th>Total active fans</th><th>Expired</th></tr></thead><tbody id="tb"></tbody></table></div>
     </div>
   </main>
 </div>
 <div class="chat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg></div>
 <script>
-const $=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-const ch=[['Subscriptions',593288.47,'#2453f0','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>','#e3f6ef','#16b88a'],['Tips',459160.31,'#16b88a','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>','#e8edfd','#2453f0'],['Posts',12149.95,'#ef4444','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>','#e3f6ef','#16b88a'],['Messages',2883428.17,'#f59e3b','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>','#f6e8fb','#b04ad6'],['Referrals',604.78,'#14b8c9','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>','#fdeaea','#ef4444'],['Streams',976,'#c026d3','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg>','#e8edfd','#2453f0']];
-document.getElementById('tot').innerHTML='<span style="font-size:15px">$</span>'+$(ch.reduce((a,c)=>a+c[1],0)).slice(1);
-const kv=c=>`<div class="kv"><div><b>${$(c[1])}</b><span>${c[0]}</span></div><div class="ic" style="background:${c[4]};color:${c[5]}">${c[3]}</div></div>`;
-[[0,1],[2,4],[3,5]].forEach((p,i)=>document.getElementById('c'+(i+1)).innerHTML=kv(ch[p[0]])+kv(ch[p[1]]));
-const days=[];for(let d=new Date(2025,0,11);d<=new Date(2025,1,9);d.setDate(d.getDate()+1))days.push(d.toLocaleDateString('en-US',{month:'short',day:'numeric'}));
-const tot=[124,133,122,126,130,131,137,151,146,140,137,128,142,138,129,137,129,124,124,127,148,130,145,125,113,122,117,124,144,122].map(v=>v*1000);
-Chart.defaults.font.family='Inter';Chart.defaults.font.size=9;Chart.defaults.color='#8a909c';
-const grid={color:'#eef0f3',drawTicks:false},ax={x:{grid:{display:false},border:{display:false}},y:{grid:grid,border:{display:false},ticks:{padding:8,callback:v=>v.toLocaleString('en-US')}}};
-new Chart(bars,{type:'bar',data:{labels:days,datasets:[{data:tot,backgroundColor:'#2453f0',barPercentage:.65,categoryPercentage:1}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>$(c.raw)}}},scales:{...ax,y:{...ax.y,max:180000,ticks:{...ax.y.ticks,stepSize:30000}}}}});
-const r=(b,a,i)=>Math.round(b+a*Math.sin(i*1.7)+a*Math.cos(i*.9));
-const msg=[89,99,88,92,92,94,100,111,106,103,102,96,105,98,93,101,92,90,91,91,113,97,109,91,83,90,88,98,101,93].map(v=>v*1000);
-const series=[days.map((_,i)=>r(20000,700,i)+(i==28?11000:0)),days.map((_,i)=>r(15500,1200,i)),days.map((_,i)=>r(400,80,i)),msg,days.map(()=>20),days.map(()=>33)];
-new Chart(lines,{type:'line',data:{labels:days,datasets:ch.map((c,i)=>({label:c[0],data:series[i],borderColor:c[2],backgroundColor:c[2],borderWidth:1.3,pointRadius:2,tension:0}))},options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false}},scales:{...ax,y:{...ax.y,max:120000,ticks:{...ax.y.ticks,stepSize:20000}}}}});
-const sum=ch.reduce((a,c)=>a+c[1],0);
-leg.innerHTML=ch.map(c=>`<div><span class="dot" style="background:${c[2]}"></span><span>${c[0]}</span><span>${(c[1]/sum*100).toFixed(2)}%</span><span>$${c[1]}</span></div>`).join('');
-const rows=[['Mary Chesterfield',751.75,-5.84,1193.6,9646.44,11591.79,12.91,585,-6.1,49],['Lena Hart',2310.2,3.12,840,14220.5,17370.7,4.2,1204,2.3,77],['Ava Monroe',1188.9,-1.4,2045.3,8712.1,11946.3,-2.7,812,1.1,60],['Chloé Martin',3420,8.6,1530.45,21980.8,26931.25,9.4,1760,5.2,104],['Jade Rivera',640.1,-9.2,410,5120.75,6170.85,-4.8,402,-3.3,31]];
+
+const IC=['<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z"/></svg>','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>','<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/></svg>'];
+const CH=[['Subscriptions','#3a6cf4',0,'#16352d','#22c493'],['Tips','#22c493',1,'#1c2647','#5b84ff'],['Posts','#f05454',2,'#16352d','#22c493'],['Messages','#f5a03b',3,'#2c1f3d','#b56cf0'],['Referrals','#1fc3d4',4,'#3a1f22','#f05454'],['Streams','#c13ad6',5,'#1c2647','#5b84ff']];
+const SHARE=[.1502137,.1162861,.0030763],SHARE2=[.0001532,.0000247];SHARE.push(1-SHARE[0]-SHARE[1]-SHARE[2]-SHARE2[0]-SHARE2[1],...SHARE2);
+const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const iso=d=>d.toISOString().slice(0,10);
+// seeded random
+function rng(seed){let x=seed%2147483647||1;return()=>(x=x*16807%2147483647)/2147483647}
+const today=new Date();today.setHours(12,0,0,0);
+const start=new Date(today);start.setDate(start.getDate()-29);
+let st={total:107855.41,ch:SHARE.map(p=>p*107855.41),creators:208};
+try{const v=JSON.parse(localStorage.getItem('dash-state'));if(v&&v.ch&&v.ch.length==6)st=v}catch(e){}
+const save=()=>{try{localStorage.setItem('dash-state',JSON.stringify(st))}catch(e){}};
+d1.value=iso(start);d2.value=iso(today);
+function days(){const a=[],e=new Date(d2.value+'T12:00');for(let d=new Date(d1.value+'T12:00');d<=e;d.setDate(d.getDate()+1))a.push(new Date(d));return a.length?a:[new Date(today)]}
+// split each channel total across days with realistic noise (weekend bump, spikes)
+function series(){
+  const D=days(),r=rng(D.length*7919+D[0].getDate()*31);
+  const base=D.map((d,i)=>{const w=[1.08,.95,.93,.96,1,1.06,1.12][d.getDay()];return w*(.82+r()*.36)*(r()<.08?1.25:1)});
+  return {D,s:st.ch.map((tot,c)=>{const w=base.map(b=>b*(c==3?1:(.75+r()*.5))*(c==4||c==5?(r()<.3?3:.2):1));const sw=w.reduce((a,b)=>a+b,0);return w.map(x=>tot*x/sw)})};
+}
+function group(D,s){
+  if(gran.value=='day')return{L:D.map(d=>d.toLocaleDateString('en-US',{month:'short',day:'numeric'})),s};
+  const L=[],G=s.map(()=>[]);D.forEach((d,i)=>{if(i%7==0){L.push(d.toLocaleDateString('en-US',{month:'short',day:'numeric'}));G.forEach(g=>g.push(0))}G.forEach((g,c)=>g[g.length-1]+=s[c][i])});return{L,s:G};
+}
+const k=()=>mode.value=='gross'?1/0.8:1; // the platform keeps 20%
+Chart.defaults.font.family='Inter';Chart.defaults.font.size=9;Chart.defaults.color='#8b8f98';
+const ax={x:{grid:{display:false},border:{display:false}},y:{grid:{color:'#26262a',drawTicks:false},border:{display:false},beginAtZero:true,ticks:{padding:8,maxTicksLimit:7,callback:v=>v.toLocaleString('en-US')}}};
+const bc=new Chart(bars,{type:'bar',data:{labels:[],datasets:[{data:[],backgroundColor:'#3a6cf4',barPercentage:.65,categoryPercentage:1}]},options:{maintainAspectRatio:false,animation:{duration:400},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.raw)}}},scales:ax}});
+const lc=new Chart(lines,{type:'line',data:{labels:[],datasets:CH.map(c=>({label:c[0],data:[],borderColor:c[1],backgroundColor:c[1],borderWidth:1.3,pointRadius:2,tension:0}))},options:{maintainAspectRatio:false,animation:{duration:400},interaction:{mode:'index',intersect:false},plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.raw)}}},scales:ax}});
+const kv=i=>{const c=CH[i];return `<div class="kv"><div><b class="ed" data-k="ch${i}">${fmt(st.ch[i]*k())}</b><span>${c[0]}</span></div><div class="ic" style="background:${c[3]};color:${c[4]}">${IC[c[2]]}</div></div>`};
+const ROWS=[['Mary Chesterfield',-5.84,12.91,585,-6.1,49],['Lena Hart',3.12,4.2,1204,2.3,77],['Ava Monroe',-1.4,-2.7,812,1.1,60],['Chloé Martin',8.6,9.4,1760,5.2,104],['Jade Rivera',-9.2,-4.8,402,-3.3,31]];
+const RW=[.107,.161,.111,.25,.057];
 const p=v=>`<span class="${v<0?'dn':'up'}">${v.toFixed(2)}%</span>`;
-tb.innerHTML=rows.map(x=>`<tr><td>${x[0]}</td><td>${$(x[1])}${p(x[2])}</td><td>${$(x[3])}</td><td>${$(x[4])}</td><td>${$(x[5])}${p(x[6])}</td><td>${x[7]}${p(x[8])}</td><td>${x[9]}</td></tr>`).join('');
+function render(){
+  st.total=st.ch.reduce((a,b)=>a+b,0);const K=k(),T=st.total*K;
+  tot.innerHTML='<span style="font-size:16px">$</span>'+fmt(T).slice(1);
+  [[0,1],[2,4],[3,5]].forEach((q,i)=>document.getElementById('c'+(i+1)).innerHTML=kv(q[0])+kv(q[1]));
+  const {D,s}=series(),g=group(D,s.map(a=>a.map(x=>x*K)));
+  bc.data.labels=lc.data.labels=g.L;bc.data.datasets[0].data=g.L.map((_,i)=>g.s.reduce((a,c)=>a+c[i],0));
+  g.s.forEach((a,c)=>lc.data.datasets[c].data=a);bc.update();lc.update();
+  leg.innerHTML=CH.map((c,i)=>`<div><span class="dot" style="background:${c[1]}"></span><span>${c[0]}</span><span>${(st.total?st.ch[i]/st.total*100:0).toFixed(2)}%</span><span>${fmt(st.ch[i]*K)}</span></div>`).join('');
+  s0.textContent=st.creators;s1.textContent=fmt(st.ch[3]*K);s2.textContent=fmt(T*1.0021);s3.textContent=fmt(T*.0072);
+  tb.innerHTML=ROWS.map((x,i)=>{const t=T*RW[i]/Math.max(1,st.creators/5);const sub=t*.07,tip=t*.1,msg=t-sub-tip-t*.003;
+    const fans=Math.max(1,Math.round(x[3]*Math.sqrt(t/(11591.79*107855.41/3949607.68*RW[i]/.107))));
+    return `<tr><td>${x[0]}</td><td>${fmt(sub)}${p(x[1])}</td><td>${fmt(tip)}</td><td>${fmt(msg)}</td><td>${fmt(t)}${p(x[2])}</td><td>${fans}${p(x[4])}</td><td>${Math.round(fans*x[5]/x[3])}</td></tr>`}).join('');
+}
+// double-click editing
+document.addEventListener('dblclick',e=>{const el=e.target.closest('.ed');if(!el)return;
+  el.contentEditable=true;el.classList.add('editing');el.textContent=el.textContent.replace(/[$,]/g,'');el.focus();
+  document.getSelection().selectAllChildren(el);
+  const done=ok=>{el.contentEditable=false;el.classList.remove('editing');el.onblur=el.onkeydown=null;
+    const v=parseFloat(el.textContent.replace(/[^0-9.]/g,''));
+    if(ok&&isFinite(v)&&v>=0){const K=k(),key=el.dataset.k;
+      if(key=='total'){const f=st.total?v/K/st.total:0;st.ch=st.total?st.ch.map(x=>x*f):SHARE.map(s=>s*v/K)}
+      else if(key=='creators')st.creators=Math.max(1,Math.round(v));
+      else st.ch[+key.slice(2)]=v/K;save()}
+    render()};
+  el.onkeydown=ev=>{if(ev.key=='Enter'){ev.preventDefault();done(true)}if(ev.key=='Escape')done(false)};
+  el.onblur=()=>done(true);
+});
+[d1,d2,gran,mode].forEach(x=>x.onchange=render);
+render();
 </script>
 </body>
 </html>
