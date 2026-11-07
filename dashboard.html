@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creator Reports</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{--nav:#2e3a52;--nav2:#263147;--blue:#2453f0;--bg:#fff;--page:#f1f2f4;--line:#e6e8ec;--txt:#1b1f2a;--mut:#6b7280;--green:#16b88a;--red:#ef4444}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--page);color:var(--txt);font-size:12px}
+.app{display:grid;grid-template-columns:200px 1fr;grid-template-rows:44px 1fr;min-height:100vh;background:var(--nav)}
+.top{grid-column:1/3;display:flex;align-items:center;justify-content:flex-end;gap:14px;padding:0 18px;color:#c9d0dc;font-size:11px}
+.top .pill{background:#13a37a;color:#fff;border-radius:6px;padding:4px 8px;font-weight:600}
+.top .sfw{background:#fff;color:var(--nav);border-radius:5px;padding:3px 6px;font-weight:700;font-size:10px}
+.top .me{color:#fff;font-weight:600;display:flex;align-items:center;gap:6px}
+.logo{position:absolute;top:12px;left:14px;display:flex;align-items:center;gap:8px;color:#fff;font-weight:700;letter-spacing:.5px}
+.mark{width:22px;height:22px;border-radius:5px;background:#fff;color:var(--nav);display:grid;place-items:center;font-weight:800;font-size:12px}
+aside{padding:6px 8px;color:#dfe4ec;display:flex;flex-direction:column}
+aside a{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:6px;color:inherit;text-decoration:none;font-size:12px}
+aside a:hover{background:var(--nav2)}
+aside a .chev{margin-left:auto;opacity:.7;font-size:10px}
+aside .sub{padding-left:26px}
+aside .on{background:var(--blue);color:#fff}
+aside .ico{width:14px;text-align:center;opacity:.9}
+aside .help{margin-top:auto;align-self:center;font-size:11px;padding:20px 0 10px}
+main{background:var(--bg);border-top-left-radius:10px;overflow:hidden;min-width:0}
+.head{padding:12px 16px;font-weight:600;font-size:13px;border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:20px;padding:0 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tab{padding:12px 0 10px;font-size:11.5px;font-weight:500;cursor:pointer;border-bottom:2px solid transparent}
+.tab.on{color:var(--blue);border-color:var(--blue)}
+.ctrl{margin-left:auto;display:flex;gap:8px;padding:6px 0;flex-wrap:wrap}
+.ctrl>*{border:1px solid var(--line);border-radius:6px;padding:5px 9px;font-size:10.5px;background:#fff;color:var(--txt);font-family:inherit}
+.ctrl .flt{color:var(--blue);border-color:var(--blue)}
+.wrap{padding:6px 16px 30px}
+h3{font-size:12.5px;font-weight:600;margin:16px 0 10px;display:flex;align-items:center;gap:6px}
+h3 i{font-style:normal;color:#aab;font-size:11px;border:1px solid #ccd;border-radius:50%;width:12px;height:12px;display:grid;place-items:center;font-size:8px}
+.sum{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr}
+.sum>div{padding:4px 16px;border-left:1px solid var(--line)}
+.sum>div:first-child{border:0;padding-left:16px}
+.tot .badge{width:28px;height:28px;border-radius:50%;background:var(--blue);display:grid;place-items:center;color:#fff;font-weight:700;margin:8px 0 18px}
+.tot small{color:var(--blue);font-size:10px}
+.tot b{display:block;color:var(--blue);font-size:22px;font-weight:700;margin-top:4px}
+.kv{display:flex;justify-content:space-between;align-items:center;padding:8px 0 12px}
+.kv b{font-size:14px;display:block}.kv span{color:var(--mut);font-size:10px}
+.ic{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:13px}
+.chart{position:relative;height:200px}
+.chan{display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:start}
+.leg{font-size:10.5px;padding-top:4px}
+.leg div{display:grid;grid-template-columns:12px 1fr 50px 70px;padding:9px 0;align-items:center;gap:4px}
+.leg div span:nth-child(n+3){text-align:right}
+.dot{width:6px;height:6px;border-radius:50%}
+.sh{display:flex;align-items:center}
+.sh .act{margin-left:auto;display:flex;gap:8px;font-size:10.5px}
+.sh .act span{padding:4px 8px;border-radius:6px}
+.sh .act .exp{border:1px solid var(--blue);color:var(--blue)}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.card{border:1px solid var(--line);border-radius:8px;padding:16px 16px 18px;position:relative;box-shadow:0 1px 2px #0000000a}
+.card b{font-size:18px;display:block}.card span{color:var(--mut);font-size:10px}
+.card i{position:absolute;right:14px;bottom:18px;font-style:normal;color:#aab;font-size:10px}
+.tw{overflow-x:auto;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:11px;min-width:820px}
+th{background:#f7f8fa;color:var(--mut);font-weight:500;text-align:left;padding:10px;border-right:1px solid var(--line);font-size:10.5px;white-space:nowrap}
+th:after{content:"⇅";float:right;opacity:.5}
+td{padding:11px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.up{color:var(--green);font-size:9px;margin-left:6px}.dn{color:var(--red);font-size:9px;margin-left:6px}
+.chat{position:fixed;right:22px;bottom:22px;width:34px;height:34px;border-radius:50%;background:#111;color:#fff;display:grid;place-items:center}
+@media(max-width:900px){.app{grid-template-columns:1fr}aside{display:none}.top{justify-content:flex-start;padding-left:120px;overflow:hidden}.sum,.cards{grid-template-columns:1fr 1fr}.chan{grid-template-columns:1fr}.sum>div{border:0}}
+@media(max-width:520px){.sum,.cards{grid-template-columns:1fr}.top>*:not(.me){display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="logo"><span class="mark">S</span>STUDIO</div>
+  <div class="top">
+    <span>Version 1.0.0</span><span>UTC-06:00 ⓘ</span><span class="pill">● Referrals</span><span class="sfw">SFW</span><span>🔔</span><span>⚙</span>
+    <span class="me"><span class="mark" style="width:18px;height:18px;font-size:10px">S</span>Studio ▾</span>
+  </div>
+  <aside>
+    <a href="#"><span class="ico">⌂</span>Home Page</a>
+    <a href="#"><span class="ico">◐</span>OF Manager<span class="chev">⌄</span></a>
+    <a href="#"><span class="ico">▮</span><b>Analytics</b><span class="chev">⌃</span></a>
+    <a href="#" class="sub on">Creator Reports</a>
+    <a href="#" class="sub">Employee Reports</a>
+    <a href="#" class="sub">Fan Reports</a>
+    <a href="#" class="sub">Message Dashboard</a>
+    <a href="#"><span class="ico">▤</span>Growth<span class="chev">⌄</span></a>
+    <a href="#"><span class="ico">⤴</span>Share for Share<span class="chev">⌄</span></a>
+    <a href="#"><span class="ico">◉</span>Creators<span class="chev">⌄</span></a>
+    <a href="#"><span class="ico">👥</span>Employees<span class="chev">⌄</span></a>
+    <span class="help">ⓘ Help Center</span>
+  </aside>
+  <main>
+    <div class="head">Creator Reports</div>
+    <div class="bar">
+      <span class="tab on">Overview</span><span class="tab">Creator performance</span>
+      <div class="ctrl"><span>Jan. 11, 2025 &nbsp;→&nbsp; Feb. 09, 2025 &nbsp;📅</span><select><option>Shown by day</option><option>Shown by week</option></select><select><option>Net earnings</option><option>Gross earnings</option></select><span class="flt">⏷ Filters</span></div>
+    </div>
+    <div class="wrap">
+      <h3>Earnings summary <i>i</i></h3>
+      <div class="sum">
+        <div class="tot"><div class="badge">✦</div><small>Total earnings</small><b id="tot"></b></div>
+        <div id="c1"></div><div id="c2"></div><div id="c3"></div>
+      </div>
+      <h3>Earnings trends <i>i</i></h3>
+      <div class="chart" style="height:210px"><canvas id="bars"></canvas></div>
+      <h3 style="margin-top:28px">Earnings by channel <i>i</i></h3>
+      <div class="chan"><div class="chart" style="height:190px"><canvas id="lines"></canvas></div><div class="leg" id="leg"></div></div>
+      <div class="sh"><h3>Creator statistics</h3><div class="act"><span>⚙ Custom metrics</span><span class="exp">⇪ Export</span></div></div>
+      <div class="cards">
+        <div class="card"><b>208</b><span>Creators</span><i>ⓘ</i></div>
+        <div class="card"><b>$2,888,026.84</b><span>Message earnings</span><i>ⓘ</i></div>
+        <div class="card"><b>$3,957,660.63</b><span>Total earnings</span><i>ⓘ</i></div>
+        <div class="card"><b>$28,626.50</b><span>Refunded</span><i>ⓘ</i></div>
+      </div>
+      <div class="tw"><table><thead><tr><th>Creator</th><th>Subscription</th><th>Tips</th><th>Message</th><th>Total earnings</th><th>Total active fans</th><th>Expired</th></tr></thead><tbody id="tb"></tbody></table></div>
+    </div>
+  </main>
+</div>
+<div class="chat">💬</div>
+<script>
+const $=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const ch=[['Subscriptions',593288.47,'#2453f0','🔖','#e3f6ef','#16b88a'],['Tips',459160.31,'#16b88a','💡','#e8edfd','#2453f0'],['Posts',12149.95,'#ef4444','📄','#e3f6ef','#16b88a'],['Messages',2883428.17,'#f59e3b','💬','#f6e8fb','#b04ad6'],['Referrals',604.78,'#14b8c9','👤','#fdeaea','#ef4444'],['Streams',976,'#c026d3','☰','#e8edfd','#2453f0']];
+document.getElementById('tot').innerHTML='<span style="font-size:15px">$</span>'+$(ch.reduce((a,c)=>a+c[1],0)).slice(1);
+const kv=c=>`<div class="kv"><div><b>${$(c[1])}</b><span>${c[0]}</span></div><div class="ic" style="background:${c[4]};color:${c[5]}">${c[3]}</div></div>`;
+[[0,1],[2,4],[3,5]].forEach((p,i)=>document.getElementById('c'+(i+1)).innerHTML=kv(ch[p[0]])+kv(ch[p[1]]));
+const days=[];for(let d=new Date(2025,0,11);d<=new Date(2025,1,9);d.setDate(d.getDate()+1))days.push(d.toLocaleDateString('en-US',{month:'short',day:'numeric'}));
+const tot=[124,133,122,126,130,131,137,151,146,140,137,128,142,138,129,137,129,124,124,127,148,130,145,125,113,122,117,124,144,122].map(v=>v*1000);
+Chart.defaults.font.family='Inter';Chart.defaults.font.size=9;Chart.defaults.color='#8a909c';
+const grid={color:'#eef0f3',drawTicks:false},ax={x:{grid:{display:false},border:{display:false}},y:{grid:grid,border:{display:false},ticks:{padding:8,callback:v=>v.toLocaleString('en-US')}}};
+new Chart(bars,{type:'bar',data:{labels:days,datasets:[{data:tot,backgroundColor:'#2453f0',barPercentage:.65,categoryPercentage:1}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>$(c.raw)}}},scales:{...ax,y:{...ax.y,max:180000,ticks:{...ax.y.ticks,stepSize:30000}}}}});
+const r=(b,a,i)=>Math.round(b+a*Math.sin(i*1.7)+a*Math.cos(i*.9));
+const msg=[89,99,88,92,92,94,100,111,106,103,102,96,105,98,93,101,92,90,91,91,113,97,109,91,83,90,88,98,101,93].map(v=>v*1000);
+const series=[days.map((_,i)=>r(20000,700,i)+(i==28?11000:0)),days.map((_,i)=>r(15500,1200,i)),days.map((_,i)=>r(400,80,i)),msg,days.map(()=>20),days.map(()=>33)];
+new Chart(lines,{type:'line',data:{labels:days,datasets:ch.map((c,i)=>({label:c[0],data:series[i],borderColor:c[2],backgroundColor:c[2],borderWidth:1.3,pointRadius:2,tension:0}))},options:{maintainAspectRatio:false,interaction:{mode:'index',intersect:false},plugins:{legend:{display:false}},scales:{...ax,y:{...ax.y,max:120000,ticks:{...ax.y.ticks,stepSize:20000}}}}});
+const sum=ch.reduce((a,c)=>a+c[1],0);
+leg.innerHTML=ch.map(c=>`<div><span class="dot" style="background:${c[2]}"></span><span>${c[0]}</span><span>${(c[1]/sum*100).toFixed(2)}%</span><span>$${c[1]}</span></div>`).join('');
+const rows=[['Mary Chesterfield',751.75,-5.84,1193.6,9646.44,11591.79,12.91,585,-6.1,49],['Lena Hart',2310.2,3.12,840,14220.5,17370.7,4.2,1204,2.3,77],['Ava Monroe',1188.9,-1.4,2045.3,8712.1,11946.3,-2.7,812,1.1,60],['Chloé Martin',3420,8.6,1530.45,21980.8,26931.25,9.4,1760,5.2,104],['Jade Rivera',640.1,-9.2,410,5120.75,6170.85,-4.8,402,-3.3,31]];
+const p=v=>`<span class="${v<0?'dn':'up'}">${v.toFixed(2)}%</span>`;
+tb.innerHTML=rows.map(x=>`<tr><td>${x[0]}</td><td>${$(x[1])}${p(x[2])}</td><td>${$(x[3])}</td><td>${$(x[4])}</td><td>${$(x[5])}${p(x[6])}</td><td>${x[7]}${p(x[8])}</td><td>${x[9]}</td></tr>`).join('');
+</script>
+</body>
+</html>
